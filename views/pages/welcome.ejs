@@ -4,14 +4,15 @@
   <%- include('../partials/head') %>
 </head>
 <body>
-  <%- include('../partials/header', {subHeading: 'Welcome'}) %>
-
-  <main>
-    <ul>
-      <li><a href="/users">Visit the user list.</a></li>
-    </ul>
-  </main>
-
+  <div class="container">
+    <%- include('../partials/header', {subHeading: 'Welcome'}) %>
+    <main>
+      <ul>
+        <li><a href="/users">Visit the user list.</a></li>
+        <li><a href="/logs">Visit the logs list.</a></li>
+      </ul>
+    </main>
+  </div>
   <%- include('../partials/scripts') %>
 </body>
 </html>

@@ -6,6 +6,8 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var moment       = require('moment');
+var passport     = require('passport');
+
 
 
 // Load local libraries.
@@ -34,6 +36,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser('notsosecretnowareyou'));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 

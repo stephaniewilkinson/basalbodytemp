@@ -4,6 +4,8 @@
   <%- include('../partials/head') %>
 </head>
 <body>
+  <div class="container">
+
   <%- include('../partials/header', { subHeading: user.name + "'s Profile" }) %>
 
   <main>
@@ -11,6 +13,7 @@
     <p>Handle: <%= user.handle %></p>
     <p><a href="/users">Back to the user list.</a></p>
   </main>
+</div>
 
   <%- include('../partials/scripts') %>
 </body>
