@@ -11,6 +11,17 @@ var index = function(req, res, next){
   });
 };
 
+var chart = function(req, res, next){
+  Log.find({}, function(err, logs) {
+    if (err) {
+      res.json({message: err});
+    } else {
+      res.render('logs/chart', {logs: logs});
+    }
+  });
+};
+
+
 var show = function(req, res, next){
   Log.findById(req.params.id, function(err, log) {
     if (err) {
@@ -47,5 +58,6 @@ var create = function(req, res) {
 module.exports = {
   index:  index,
   show:   show,
-  create: create
+  create: create,
+  chart: chart
 };

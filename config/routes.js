@@ -22,9 +22,10 @@ router.get('/users/:id',    usersController.show);
 // router.get('/logs',      logsController.index);
 // router.get('/logs/:id',  logsController.show);
 
-router.get('/logs/:id',    logsController.show);
 router.get('/logs',        logsController.index);
 router.post('/logs',       logsController.create);
+router.get('/logs/chart',  logsController.chart);
+router.get('/logs/:id',    logsController.show);
 // router.put('/logs/:id',    logsController.update);
 // router.delete('/logs/:id', logsController.delete);
 

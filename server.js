@@ -7,7 +7,7 @@ var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var moment       = require('moment');
 var passport     = require('passport');
-
+// var Chart        = require('chart.js')
 
 
 // Load local libraries.
@@ -69,6 +69,9 @@ app.use(function(err, req, res, next) {
     error: err
   });
 });
+
+
+
 
 function debugReq(req, res, next) {
   debug('params:', req.params);
