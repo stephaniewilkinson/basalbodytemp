@@ -1,5 +1,7 @@
 // Require resource's model(s).
 var User = require("../models/user");
+var passport        = require('passport');
+
 
 var index = function(req, res, next){
   User.find({}, function(err, users) {

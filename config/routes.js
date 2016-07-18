@@ -4,14 +4,15 @@ var express = require('express'),
 // Require controllers.
 var pagesController = require('../controllers/pages');
 var usersController = require('../controllers/users');
-var logsController  = require('../controllers/logs')
+var logsController  = require('../controllers/logs');
+var passport        = require('passport.js');
+
 
 // root path:
 router.get('/', pagesController.welcome);
 
 // users resource paths:
-// router.get('/users',     usersController.index);
-router.get('/users/:id', usersController.show);
+
 // router.post('/login',       usersController.userAuth);
 router.get('/users',        usersController.index);
 // router.post('/users',       usersController.userCreate);
@@ -28,5 +29,30 @@ router.get('/logs/chart',  logsController.chart);
 router.get('/logs/:id',    logsController.show);
 // router.put('/logs/:id',    logsController.update);
 // router.delete('/logs/:id', logsController.delete);
+
+
+router.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/users/' + req.user.username);
+  });
+  
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+router.get('/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 
 module.exports = router;
