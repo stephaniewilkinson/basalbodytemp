@@ -6,7 +6,6 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var moment       = require('moment');
-var passport     = require('passport');
 // var Chart        = require('chart.js')
 
 
@@ -37,8 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser('notsosecretnowareyou'));
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 
@@ -70,15 +68,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
 
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
 
 
 
