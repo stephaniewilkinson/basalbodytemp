@@ -6,6 +6,8 @@ var bodyParser   = require('body-parser');
 var debug        = require('debug')('app:http');
 var cookieParser = require('cookie-parser');
 var moment       = require('moment');
+var stormpath    = require('express-stormpath');
+
 // var Chart        = require('chart.js')
 
 
@@ -37,6 +39,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('notsosecretnowareyou'));
 
 
+// This must go above the 404 catcher or the routes will generate an error
+
+app.use(stormpath.init(app, {
+  apiKeyFile: process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'] + '/.stormpath/apiKey.properties',
+  secretKey: 'some_random_long_string_here',
+  application: 'https://api.stormpath.com/v1/applications/4Ft7johdSlPnUI5bm9FxXi',
+}));
 
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 
